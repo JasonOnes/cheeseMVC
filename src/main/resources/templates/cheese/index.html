@@ -9,9 +9,19 @@
     <p th:unless="${cheeses} and ${cheeses.size()}">no cheeses, Jesus</p>
 
 
-<ul>
-    <li th:each="cheese: ${cheeses}" th:text="${cheese}"></li>
 
-</ul>
+
+    <!--<li th:each="cheese: ${cheeses}" th:text="${cheese.key + ' : ' + cheese.value}"></li>-->
+    <tr th:each="cheese : ${cheeses}">
+
+        <ul>
+            <li th:text="${cheese.key}"></li>
+            <ul><li th:text="'has been described as ' + ${cheese.value}"></li></ul>
+            <p th:unless="${cheese.value}">no description given</p>
+            <!--<ul><li th:text="'has been described as :: ' + &ldquo + ${cheese.value} + &rdquo"></li></ul>-->
+            <!--TODO get double quotes within Thymeleaf string-->
+        </ul>
+    </tr>
+
 </body>
 </html>

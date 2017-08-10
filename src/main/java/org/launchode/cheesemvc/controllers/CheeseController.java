@@ -6,14 +6,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import java.util.ArrayList;
+import java.util.HashMap;
 
 
 @Controller
 @RequestMapping("cheese")
 public class CheeseController {
 
-    ArrayList<String> cheeses = new ArrayList<>();
+    HashMap<String, String> cheeses = new HashMap<>();
 
     @RequestMapping(value="")
 
@@ -28,14 +28,15 @@ public class CheeseController {
     @RequestMapping(value="add", method = RequestMethod.GET)
     public String displayAddCheeseForm(Model model) {
         model.addAttribute("title", "Add Cheese");
+        model.addAttribute("description", "Describe the Cheese");
         return "cheese/add";
     }
 
     @RequestMapping(value="add", method = RequestMethod.POST)
-    public String  processAddCheeseForm(@RequestParam String cheeseName) {
+    public String  processAddCheeseForm(@RequestParam String cheeseName, @RequestParam String cheeseFlavor) {
 
-        cheeses.add(cheeseName);
-
+        //cheeses.add(cheeseName);
+        cheeses.put(cheeseName, cheeseFlavor);
         return "redirect:"; //by leaving :blank redirects to base handler
 
     }
