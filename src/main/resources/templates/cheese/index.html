@@ -15,11 +15,14 @@
     <tr th:each="cheese : ${cheeses}">
 
         <ul>
-            <li th:text="${cheese.key}"></li>
-            <ul><li th:text="'has been described as ' + ${cheese.value}"></li></ul>
-            <p th:unless="${cheese.value}">no description given</p>
+
+            <li th:text="${cheese.name}"></li> <a th:href="@{'/cheese/edit/' + ${cheese.cheeseId}}">edit</a>
+            <ul><li th:text="|has been described as ''${cheese.description}''|"></li>
+            <li th:text="| and is of the ${cheese.type.name} variety.|"></li></ul>
+            <p th:unless="${cheese.description}">no description given</p>
             <!--<ul><li th:text="'has been described as :: ' + &ldquo + ${cheese.value} + &rdquo"></li></ul>-->
             <!--TODO get double quotes within Thymeleaf string-->
+            <input type="hidden" th:value="${cheese.cheeseId}" name="cheeseId" />
         </ul>
     </tr>
 

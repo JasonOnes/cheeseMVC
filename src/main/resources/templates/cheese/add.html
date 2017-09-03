@@ -7,10 +7,25 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 
-<form method="post">
-    <input type="text" name="cheeseName" />
-    <p>And how does that taste, smell, sound, and feel rubbed on the soles of your feet?</p>
-    <textarea name="cheeseFlavor" cols="20" rows="5"></textarea>
+<form method="post" th:object="${cheese}">
+    <div class="form=-group">
+        <label th:for="name">Name</label>
+        <input class="form-control" th:field="*{name}" />
+        <span th:errors="*{name}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label th:for="description">Descripto</label>
+        <input class="form-control" th:field="*{description}" />
+        <span th:errors="*{description}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label th:for="type">Type</label>
+        <select th:field="*{type}">
+            <option th:each=" cheeseType : ${cheeseTypes}"
+                    th:text="${cheeseType.name}"
+                    th:value="${cheeseType}"></option>
+        </select>
+    </div>
     <input type="submit" value="Say Cheese!" />
 
 </form>
