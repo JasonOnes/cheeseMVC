@@ -9,7 +9,7 @@ public class User {
     @Size(min=2, max=15, message="name must be between 5-15 characters!!")
     public String username; //note made public so could use for display in views without calling getUserName
     @NotNull
-    @Size(min=5, max=25, message="same-o, 5-15")
+    @Size(min=5, max=25, message="email must be between 5-25")
     private String email;
 
     @NotNull

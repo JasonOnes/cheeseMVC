@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+
+<body>
+
+<form method="post">
+
+    <input th:each="user : ${users}" type="checkbox" name="userIds"  th:value="${user.userId}"   th:text="${user.username}" />
+    <!--note form returns a string not Cheese object-->
+    <input type="submit" value="Later!" />
+</form>
+
+</body>
+</html>

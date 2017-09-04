@@ -1,0 +1,18 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body>
+
+
+<nav th:replace="fragments :: navigation"></nav>
+
+
+<h1 th:text="|Here are the details for ${user.username}|">Default heading reads username </h1>
+
+<!--<h3 th:text="|${session.user.username}'s email is ${session.user.email} and their id# is ${session.user.userId}|">just a few details</h3>-->
+
+<h3 th:text="|${user.username}'s email is ${user.email} and her/his id# is ${user.userId}|"></h3>
+</body>
+</html>
