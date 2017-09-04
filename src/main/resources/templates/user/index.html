@@ -16,8 +16,8 @@
 <!--TODO not sure if this was the solution looked for but session made sense to me-->
 <h1 th:unless="${session}" th:text="|hello ${session.user.username}|">hi</h1>
 <!--TODO figure out why username still in session after reboot, if no current user keep blank-->
-<!--<h1 th:text="|hello ${username}|">hi</h1>-->
-<!--<h1 th:text="|Hello ${user.username}|">Hello</h1>-->
+
+<!--&lt;!&ndash;<h1 th:text="|Hello ${user.username}|">Hello</h1>&ndash;&gt;TODO why doesn't this work?!!!!!!-->
 <p>Here's the list your friends and yourself:</p>
 
 <ul th:each="person : ${users}">

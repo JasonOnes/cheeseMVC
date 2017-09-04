@@ -21,7 +21,6 @@ public class CheeseController {
 
     public String index(Model model) {
 
-
         model.addAttribute("cheeses", CheeseData.getAll());
         model.addAttribute("title", "Sweet Cheesus!");
         ArrayList<Cheese> cheeses = new ArrayList<>();
@@ -33,7 +32,6 @@ public class CheeseController {
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String displayAddCheeseForm(Model model) {
         model.addAttribute("title", "Add Cheese");
-        model.addAttribute("description", "Describe the Cheese");
         model.addAttribute(new Cheese());
         model.addAttribute("cheeseTypes", CheeseType.values());
         return "cheese/add";
@@ -52,7 +50,7 @@ public class CheeseController {
         }
 
         CheeseData.add(newCheese);
-        return "redirect:"; //by leaving :blank redirects to base handler
+        return "redirect:";
 
     }
 
@@ -79,7 +77,6 @@ public class CheeseController {
         Cheese freshCheese = CheeseData.getById(cheeseId);
         model.addAttribute("cheesey", freshCheese);
         model.addAttribute("cheeseTypes", CheeseType.values());
-        model.addAttribute("freshCheese");
 
         return "cheese/edit";
 
@@ -103,7 +100,6 @@ public class CheeseController {
         model.addAttribute("cheesey", freshCheese);
         CheeseData.add(freshCheese);
 
-//        return "redirect:";
         return "redirect:/cheese"; //note redirect without /path go all the way to root url
 
 
