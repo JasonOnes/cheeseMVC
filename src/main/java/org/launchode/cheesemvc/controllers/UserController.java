@@ -35,22 +35,26 @@ public class UserController {
     public String add(HttpSession session, @ModelAttribute @Valid User newUser, Errors errors, Model model,
                       String passwordVerify) {
 
-        String password = newUser.getPassword();
+//        String password = newUser.getPassword();
         String username = newUser.username;
-
+        newUser.checkPassword();
         if (errors.hasErrors()) {
             model.addAttribute("title", "Try again");
+            model.addAttribute(newUser);
             return "user/add";
-        } else if (!password.equals(passwordVerify)) {
-            String msg = "Passwords must match!";//note look for way to pass this into Thymeleaf better
-            model.addAttribute("msg2", msg);
-            model.addAttribute("username", newUser.username);
-            return "user/add";
-        } else if (!UserValidate.nameIsAlpha(username)) {
+//        } else if (!password.equals(passwordVerify)) {
+//            String msg = "Passwords must match!";//note look for way to pass this into Thymeleaf better
+//            model.addAttribute("msg2", msg);
+//            model.addAttribute("username", newUser.username);
+//            return "user/add";
+        }
+
+         else if (!UserValidate.nameIsAlpha(username)) {
             String msg = "Username can only contain letters.";
             model.addAttribute("msg1", msg);
             return "user/add";
         } else {
+
             Date now = new Date();
             newUser.setDateAdded(now);
             UserData.add(newUser);
