@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.Date;
 
 
 @Controller
@@ -50,6 +51,8 @@ public class UserController {
             model.addAttribute("msg1", msg);
             return "user/add";
         } else {
+            Date now = new Date();
+            newUser.setDateAdded(now);
             UserData.add(newUser);
             model.addAttribute("user", newUser);
             //session.setAttribute("user", newUser);//note if going session route to displau username
@@ -82,7 +85,7 @@ public class UserController {
 
     @RequestMapping(value = "detes/{userId}", method = RequestMethod.POST)
     public String showDetails(HttpSession session, Model model, @PathVariable int userId) {
-        //note maybe need a post route with the userId? since GET isn't working
+        //note maybe need a post route with the userId? since GET isn't workingth
         User someUser = UserData.getById(userId);
         model.addAttribute("user", someUser);
 

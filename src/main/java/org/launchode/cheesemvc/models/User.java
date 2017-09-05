@@ -2,6 +2,7 @@ package org.launchode.cheesemvc.models;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Date;
 
 public class User {
 
@@ -16,15 +17,15 @@ public class User {
     @Size(min=1, message="Password in not optional!!")
     private String password;
 
-//    @NotNull
-//    @Size(min=1)
-    //private String passwordVerify;
+
+    public Date dateAdded;
 
 
-    public User(String username, String email, String password) {
+    public User(String username, String email, String password, Date dateAdded) {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.dateAdded = dateAdded;
     }
 
     private int userId;
@@ -75,12 +76,10 @@ public class User {
         this.password = password;
     }
 
-//    public String getPasswordVerify() {
-//        return passwordVerify;
-//    }
-//
-//    public void setPasswordVerify(String passwordVerify) {
-//        this.passwordVerify = passwordVerify;
-//    }
-
+    public Date getDateAdded() {
+        return dateAdded;
+    }
+    public void setDateAdded(Date date) {
+        this.dateAdded = date;
+    }
 }
