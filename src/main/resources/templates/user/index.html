@@ -12,7 +12,6 @@
 
 <!--<p th:unless="${newUser}">No user added!!!!!!</p>-->
 <!--<p th:unless="${session.username} and ${users}">No current user!!</p>-->
-<!--<p th:unless="${username}">no user at the moment</p>-->
 <!--TODO not sure if this was the solution looked for but session made sense to me-->
 <h1 th:unless="${session}" th:text="|hello ${session.user.username}|">hi</h1>
 <!--TODO figure out why username still in session after reboot, if no current user keep blank-->

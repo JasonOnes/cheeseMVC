@@ -59,7 +59,7 @@ public class UserController {
             newUser.setDateAdded(now);
             UserData.add(newUser);
             model.addAttribute("user", newUser);
-            //session.setAttribute("user", newUser);//note if going session route to displau username
+            //session.setAttribute("user", newUser);//note if going session route to display username
             return "redirect:";
 
         }

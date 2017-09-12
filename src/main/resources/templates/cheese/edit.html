@@ -10,8 +10,9 @@
 
 
 <h3 th:text="|Edit ${cheesey.name}(id=${cheesey.cheeseId})|">Default heading reads cheese name and id </h3>
-<form method="post" th:object="${cheesey}" >
+<form method="post" th:object="${freshCheese}" >
     <input type="text" name="name"/>
+    <!--<span th:errors="*{cheesey.name}"></span>-->
     <!--value="${cheesey.name}"/>-->
     <p>And how does that taste, smell, sound, and feel rubbed on the soles of your feet?</p>
     <textarea name="description" cols="20" rows="5"></textarea>
