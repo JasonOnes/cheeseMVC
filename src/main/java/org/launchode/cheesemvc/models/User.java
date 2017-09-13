@@ -50,13 +50,13 @@ public class User {
         this.userId = userId;
     }
 
-    public static int getNextId() {
-        return nextId;
-    }
-
-    public static void setNextId(int nextId) {
-        User.nextId = nextId;
-    }
+//    public static int getNextId() {
+//        return nextId;
+//    }
+//
+//    public static void setNextId(int nextId) {
+//        User.nextId = nextId;
+//    }
 
     public String getUsername() {
         return username;

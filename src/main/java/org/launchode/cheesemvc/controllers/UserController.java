@@ -11,12 +11,19 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.Date;
+
+import static org.launchode.cheesemvc.models.UserData.getById;
 
 
 @Controller
 @RequestMapping("user")
 public class UserController {
+
+    //private UserData userData = UserData.getInstance();
+    //ArrayList<User> users = userData.getAll();
+
     @RequestMapping(value = "")
     public String index(Model model) {
         model.addAttribute("users", UserData.getAll());
@@ -35,21 +42,14 @@ public class UserController {
     public String add(HttpSession session, @ModelAttribute @Valid User newUser, Errors errors, Model model,
                       String passwordVerify) {
 
-//        String password = newUser.getPassword();
         String username = newUser.username;
         newUser.checkPassword();
         if (errors.hasErrors()) {
             model.addAttribute("title", "Try again");
             model.addAttribute(newUser);
             return "user/add";
-//        } else if (!password.equals(passwordVerify)) {
-//            String msg = "Passwords must match!";//note look for way to pass this into Thymeleaf better
-//            model.addAttribute("msg2", msg);
-//            model.addAttribute("username", newUser.username);
-//            return "user/add";
-        }
 
-         else if (!UserValidate.nameIsAlpha(username)) {
+        } else if (!UserValidate.nameIsAlpha(username)) {
             String msg = "Username can only contain letters.";
             model.addAttribute("msg1", msg);
             return "user/add";
@@ -65,35 +65,11 @@ public class UserController {
         }
 
     }
-
-    @RequestMapping(value = "detes/{userId}", method = RequestMethod.GET)//note cannot get user updated with git userId
-    public String displayDetails(HttpSession session, Model model, @PathVariable int userId) {
-        //User user = session.getAttribute("user", User newUser);
-        //session.removeAttribute("user");//note needed to reset/update session with variable of same name
-//        System.out.println(session.getAttribute("user"));
-//        System.out.println(session.getAttribute("user"));
-
-        //note not liking the session attrib pain
-//        session.setAttribute("user", someUser);
-//        System.out.println(session.getAttribute("user"));
-//        System.out.println(someUser.username);
-//        System.out.println("************************************");
-
+    @RequestMapping(value="detes/{userId}", method = RequestMethod.GET)
+    public String showDetes(Model model, @PathVariable int userId) {
         User someUser = UserData.getById(userId);
-        model.addAttribute("user", someUser);
-
         model.addAttribute("title", "user details");
-        return "user/detes";
-
-    }
-
-    @RequestMapping(value = "detes/{userId}", method = RequestMethod.POST)
-    public String showDetails(HttpSession session, Model model, @PathVariable int userId) {
-        //note maybe need a post route with the userId? since GET isn't workingth
-        User someUser = UserData.getById(userId);
         model.addAttribute("user", someUser);
-
-        model.addAttribute("title", "user details");
         return "user/detes";
     }
 
@@ -107,7 +83,7 @@ public class UserController {
     @RequestMapping(value = "remove", method = RequestMethod.POST)
     public String processUserRemoval(@RequestParam int[] userIds) {
         for (int luserId : userIds) {
-            UserData.delete(UserData.getById(luserId));
+            UserData.delete(getById(luserId));
 
         }
         return "redirect:";

@@ -38,14 +38,12 @@ public class CheeseController {
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
-//    public String processAddCheeseForm(@RequestParam String cheeseName, @RequestParam String cheeseFlavor) {
-//        Cheese newCheese = new Cheese(cheeseName, cheeseFlavor);
-//        CheeseData.add(newCheese);
-//note above refactored using model binding
-    public String processAddCheeseForm(@ModelAttribute @Valid Cheese newCheese, Errors errors, Model model) {
+    public String processAddCheeseForm(Model model, @ModelAttribute @Valid Cheese newCheese, Errors errors) {
 
         if (errors.hasErrors()) {
-            model.addAttribute("title", "Add Cheese");
+            model.addAttribute("title", "Error, please review your Add Cheese attempt");
+            //model.addAttribute("cheese", newCheese);
+            model.addAttribute("cheeseTypes", newCheese.getType());
             return "cheese/add";
         }
 

@@ -10,20 +10,12 @@
 <nav th:replace="fragments :: navigation"></nav>
 <p th:unless="${users} and ${users.size()}">No one is signed up</p>
 
-<!--<p th:unless="${newUser}">No user added!!!!!!</p>-->
-<!--<p th:unless="${session.username} and ${users}">No current user!!</p>-->
-<!--TODO not sure if this was the solution looked for but session made sense to me-->
-<h1 th:unless="${session}" th:text="|hello ${session.user.username}|">hi</h1>
-<!--TODO figure out why username still in session after reboot, if no current user keep blank-->
 
-<!--&lt;!&ndash;<h1 th:text="|Hello ${user.username}|">Hello</h1>&ndash;&gt;TODO why doesn't this work?!!!!!!-->
 <p>Here's the list your friends and yourself:</p>
 
 <ul th:each="person : ${users}">
-    <!--<li th:text="${person.username}"><a th:href="@{'/user/detes/' + ${person.userId}">detes</a></li>-->
-    <form method="POST">
-     <li th:text="${person.username}"></li> <a th:href="@{'/user/detes/' + ${person.userId}}" >detes</a>
-        <!--TODO note cannot make link a form submit without Java Script-->
+    <form method="post">
+        <li><a th:text="${person.username}" th:href="@{'/user/detes/' + ${person.userId}}" >detes</a></li>
     </form>
 </ul>
 

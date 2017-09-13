@@ -12,8 +12,8 @@
 <h3 th:text="|Edit ${cheesey.name}(id=${cheesey.cheeseId})|">Default heading reads cheese name and id </h3>
 <form method="post" th:object="${freshCheese}" >
     <input type="text" name="name"/>
-    <!--<span th:errors="*{cheesey.name}"></span>-->
-    <!--value="${cheesey.name}"/>-->
+    <!--<span th:errors="*{name}"></span>-->
+    <!--&lt;!&ndash;value="${cheesey.name}"/>&ndash;&gt;-->
     <p>And how does that taste, smell, sound, and feel rubbed on the soles of your feet?</p>
     <textarea name="description" cols="20" rows="5"></textarea>
 
@@ -29,7 +29,6 @@
     </select>
 
     <input type="hidden" th:value="${cheesey.cheeseId}" name="cheeseId" />
-    <!--<input type="hidden" th:value="${cheesey.type.name}" name="cheese.type.name"/>-->
     <input type="submit" value="Say Cheese!" />
 
 </form>
